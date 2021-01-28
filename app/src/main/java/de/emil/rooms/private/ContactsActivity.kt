@@ -7,9 +7,11 @@ import bindView
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 
-class PrivateActivity : RoomActivity() {
+class ContactsActivity : RoomActivity() {
 
     private val cardFamily: View by bindView(R.id.cardFamily)
+    private val cardWork: View by bindView(R.id.cardWork)
+    private val cardFriends: View by bindView(R.id.cardFriends)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,7 +20,17 @@ class PrivateActivity : RoomActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         cardFamily.setOnClickListener {
-            startActivity(Intent(this, FamilyActivity::class.java))
+            startActivity(Intent(this, ContactsGridActivity::class.java))
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
+        }
+
+        cardWork.setOnClickListener {
+            startActivity(Intent(this, ContactsGridActivity::class.java))
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
+        }
+
+        cardFriends.setOnClickListener {
+            startActivity(Intent(this, ContactsGridActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
 

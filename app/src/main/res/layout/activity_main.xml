@@ -45,12 +45,12 @@
                 android:layout_marginTop="@dimen/text_margin"
                 android:layout_marginEnd="@dimen/text_margin"
                 android:layout_marginBottom="@dimen/text_margin"
-                android:text="Family" />
+                android:text="Contacts" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardInterests"
+        android:id="@+id/cardProfesionnals"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:clickable="true"
@@ -73,7 +73,7 @@
                 android:layout_marginTop="@dimen/text_margin"
                 android:layout_marginEnd="@dimen/text_margin"
                 android:layout_marginBottom="@dimen/text_margin"
-                android:text="Friends"
+                android:text="Professional"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>
@@ -103,7 +103,7 @@
                 android:layout_marginTop="@dimen/text_margin"
                 android:layout_marginEnd="@dimen/text_margin"
                 android:layout_marginBottom="@dimen/text_margin"
-                android:text="Work"
+                android:text="Interests"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>

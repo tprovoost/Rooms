@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#62929E</color>
+    <color name="colorPrimary">#89D1A3</color>
     <color name="colorPrimaryDark">#546A7B</color>
     <color name="colorAccent">#C6C5B9</color>
 
@@ -10,5 +10,7 @@
 
     <color name="privateCard">#982D2D</color>
 
+    <color name="transparent">#00000000</color>
     <color name="gray_transparent">#11434343</color>
+    <color name="blackTransparent60percent">#96000000</color>
 </resources>

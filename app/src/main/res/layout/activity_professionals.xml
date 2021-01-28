@@ -20,13 +20,12 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardPrivate"
+        android:id="@+id/cardHealth"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="@dimen/card_margin"
@@ -50,12 +49,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/text_margin"
-                android:text="Family" />
+                android:text="Health" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardProfesionnals"
+        android:id="@+id/cardCraft"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="@dimen/card_margin"
@@ -65,7 +64,7 @@
         app:cardElevation="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardPrivate">
+        app:layout_constraintTop_toBottomOf="@+id/cardHealth">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -78,14 +77,14 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/text_margin"
-                android:text="Friends"
+                android:text="Craft"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardInterests"
+        android:id="@+id/cardFood"
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:clickable="true"
@@ -95,7 +94,7 @@
         app:cardElevation="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardProfesionnals">
+        app:layout_constraintTop_toBottomOf="@+id/cardCraft">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -106,23 +105,12 @@
                 style="@style/cardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Work"
+                android:text="Food"
                 android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/text_margin"/>
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/card_margin"
-        android:layout_marginBottom="@dimen/card_margin"
-        android:src="@drawable/ic_baseline_add_60"
-        android:scaleType="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

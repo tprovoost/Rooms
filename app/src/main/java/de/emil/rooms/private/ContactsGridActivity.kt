@@ -1,19 +1,24 @@
 package de.emil.rooms.private
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bindView
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 
-class FamilyActivity : RoomActivity() {
 
-    private var values = ArrayList<String>()
+class ContactsGridActivity : RoomActivity() {
+
+    private var values = ArrayList<Contact>()
 
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
 
@@ -27,15 +32,19 @@ class FamilyActivity : RoomActivity() {
     }
 
     private fun init() {
-        values.add("Thomas")
-        values.add("Darya")
-        values.add("Sanya")
-        values.add("Henrik")
+        values.add(Contact("Thomas", R.drawable.thomas, "+4915251741573"))
+        values.add(Contact("Darya" , R.drawable.darya, "+4915251741573"))
+        values.add(Contact("Sanya" , R.drawable.sanya, "+4915251741573"))
+        values.add(Contact("Henrik", R.drawable.henrik, "+4915251741573"))
 
         val adapter = ContactAdapter()
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
     }
+
+    inner class Contact(var name: String,
+                        var pictureID: Int,
+                        var number: String)
 
     internal inner class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
         private val inflater: LayoutInflater = layoutInflater
@@ -46,9 +55,14 @@ class FamilyActivity : RoomActivity() {
         }
 
         override fun onBindViewHolder(holder: ContactViewHolder, position: Int) {
-            val item = values[holder.adapterPosition]
+            val contact = values[position]
 
-            holder.name.text = item
+            holder.name.text = contact.name
+            holder.image.setImageResource(contact.pictureID)
+
+            holder.itemView.setOnClickListener {
+                dialPhoneNumber(contact.number)
+            }
         }
 
         override fun getItemCount(): Int {
@@ -57,8 +71,18 @@ class FamilyActivity : RoomActivity() {
 
         internal inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var name: TextView = itemView.findViewById(R.id.cardContactTV)
-
+            var image: ImageView = itemView.findViewById(R.id.cardContactIV)
         }
     }
 
+    fun dialPhoneNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_DIAL).apply {
+            data = Uri.parse("tel:$phoneNumber")
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT)
+        }
+    }
 }

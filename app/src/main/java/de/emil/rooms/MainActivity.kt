@@ -1,22 +1,19 @@
 package de.emil.rooms
 
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.EditText
 import bindView
-import de.emil.rooms.private.PrivateActivity
+import de.emil.rooms.private.ContactsActivity
+import de.emil.rooms.professionals.ProfessionalActivity
 
 class MainActivity : RoomActivity() {
 
     private val cardPrivate: View by bindView(R.id.cardPrivate)
+    private val cardProfessional: View by bindView(R.id.cardProfesionnals)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,8 +21,15 @@ class MainActivity : RoomActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+        Log.d("TEST", "Debug")
+
         cardPrivate.setOnClickListener {
-            startActivity(Intent(this, PrivateActivity::class.java))
+            startActivity(Intent(this, ContactsActivity::class.java))
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
+        }
+
+        cardProfessional.setOnClickListener {
+            startActivity(Intent(this, ProfessionalActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
     }
