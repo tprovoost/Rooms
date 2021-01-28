@@ -15,13 +15,26 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bindView
 import de.emil.rooms.R
+import de.emil.rooms.RoomActivity
+import de.emil.rooms.api.RoomApi
+import de.emil.rooms.model.ServiceContact
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import okhttp3.Cache
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
-class ProfessionalListActivity : AppCompatActivity() {
+class ProfessionalListActivity : RoomActivity() {
 
     private var values = ArrayList<ServiceContact>()
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
 
-    enum class CategoriesEnum(name: String) {
+    private lateinit var api: RoomApi
+
+    enum class CategoriesEnum(value: String) {
         HEALTH("Health"),
         CRAFT("Craft"),
         FOOD("Food"),
@@ -43,32 +56,61 @@ class ProfessionalListActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        values.add(ServiceContact("Ristorante Alfredo",
+        /*values.add(ServiceContact(1, "Ristorante Alfredo",
             "Very tasty italian restaurant",
             "Osolemio 3, 12345 Berlin",
             "+4915251741573",
             "100 m"))
-        values.add(ServiceContact("Sushi Hero",
+        values.add(ServiceContact(2, "Sushi Hero",
             "Best Sushis in Berlin",
             "Superstraße 132, 12345 Berlin",
             "+4915251741573",
             "400 m"))
-        values.add(ServiceContact("Extra Burger",
+        values.add(
+            ServiceContact(3, "Extra Burger",
             "Make Burgers Great Again",
             "Amerikanerstraße 2, 12345 Berlin",
             "+4915251741573",
-            "1.3 km"))
+            "1.3 km")
+        )*/
+
+        initService()
+
+        api.getFood()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnNext {
+                values.addAll(it)
+                recyclerView.adapter?.notifyDataSetChanged()
+            }
+            .doOnError {
+                Log.e("ProfessionalList", "Failure on call", it)
+            }
+            .subscribe()
 
         val adapter = ServiceContactAdapter()
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = adapter
     }
 
-    inner class ServiceContact(var name: String,
-                        var description: String,
-                        var address: String,
-                        var number: String,
-                        var distance: String)
+    private fun initService() {
+        val cacheSize = 10 * 1024 * 1024 // 10 MiB
+        val cache = Cache(cacheDir, cacheSize.toLong())
+
+        val httpClient = OkHttpClient.Builder()
+            .cache(cache)
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(RoomApi.API_BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(httpClient)
+            .build()
+
+        api = retrofit.create(RoomApi::class.java)
+    }
 
     internal inner class ServiceContactAdapter : RecyclerView.Adapter<ServiceContactAdapter.ServiceContactViewHolder>() {
         private val inflater: LayoutInflater = layoutInflater
@@ -86,7 +128,11 @@ class ProfessionalListActivity : AppCompatActivity() {
             holder.description.text = contact.description
 
             holder.itemView.setOnClickListener {
-                dialPhoneNumber(contact.number)
+                if (contact.phone.isEmpty()) {
+                    Toast.makeText(this@ProfessionalListActivity, "No phone number found.", Toast.LENGTH_SHORT)
+                        .show()
+                }
+                dialPhoneNumber(contact.phone)
             }
         }
 
@@ -108,7 +154,7 @@ class ProfessionalListActivity : AppCompatActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
-            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
         }
     }
 

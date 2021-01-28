@@ -15,7 +15,6 @@ import bindView
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 
-
 class ContactsGridActivity : RoomActivity() {
 
     private var values = ArrayList<Contact>()
@@ -82,7 +81,7 @@ class ContactsGridActivity : RoomActivity() {
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
-            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT)
+            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
         }
     }
 }

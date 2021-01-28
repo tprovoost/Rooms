@@ -13,4 +13,6 @@
     <color name="transparent">#00000000</color>
     <color name="gray_transparent">#11434343</color>
     <color name="blackTransparent60percent">#96000000</color>
+
+    <color name="selectedBlue">#0E60DA</color>
 </resources>

@@ -3,6 +3,8 @@
     package="de.emil.rooms">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -10,27 +12,23 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".interests.ChooseInterestActivity"></activity>
+        android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".interests.ChooseInterestActivity"
+            android:label="Pick your interests" />
         <activity
             android:name=".private.ContactsActivity"
-            android:label="@string/title_activity_private"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_private" />
         <activity
             android:name=".professionals.ProfessionalActivity"
-            android:label="Professionals"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="Professionals" />
         <activity
-            android:name=".professionals.ProfessionalListActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".professionals.ProfessionalListActivity" />
         <activity
             android:name=".private.ContactsGridActivity"
-            android:label="@string/title_activity_private"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="@string/title_activity_private" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
