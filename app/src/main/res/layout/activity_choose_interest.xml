@@ -40,7 +40,7 @@
         android:id="@+id/confirmBtn"
         android:layout_width="0dp"
         android:layout_height="80dp"
-        android:background="@color/selectedBlue"
+        android:background="@color/colorAccent"
         android:clickable="true"
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"

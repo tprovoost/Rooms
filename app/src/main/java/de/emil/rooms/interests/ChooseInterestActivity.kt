@@ -39,6 +39,7 @@ class ChooseInterestActivity : RoomActivity() {
         confirmBtn.setOnClickListener {
             val intent = InterestsActivity.newIntent(this, selectedValues)
             startActivity(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
     }
 
@@ -64,6 +65,13 @@ class ChooseInterestActivity : RoomActivity() {
                 } else {
                     holder.selectedView.visibility = View.GONE
                     selectedValues.remove(position)
+                }
+                if (selectedValues.isEmpty()) {
+                    confirmBtn.setBackgroundColor(getColor(R.color.colorAccent))
+                    confirmBtn.isEnabled = false
+                } else {
+                    confirmBtn.setBackgroundColor(getColor(R.color.selectedBlue))
+                    confirmBtn.isEnabled = true
                 }
             }
         }

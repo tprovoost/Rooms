@@ -34,7 +34,6 @@ class ContactsActivity : RoomActivity() {
             startActivity(Intent(this, ContactsGridActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
-
     }
 
 }

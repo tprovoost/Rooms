@@ -37,9 +37,9 @@ class ProfessionalListActivity : RoomActivity() {
     private lateinit var category: CategoriesEnum
 
     enum class CategoriesEnum(var value: String) {
-        HEALTH("Health"),
-        CRAFT("Craft"),
-        FOOD("Food"),
+        HEALTH("Doctors"),
+        CRAFT("Craftsmen"),
+        FOOD("Restaurants"),
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
