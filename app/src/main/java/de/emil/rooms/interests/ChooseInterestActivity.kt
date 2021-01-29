@@ -1,6 +1,5 @@
 package de.emil.rooms.interests
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView
 import bindView
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
-import de.emil.rooms.private.ContactsGridActivity
 
 class ChooseInterestActivity : RoomActivity() {
 

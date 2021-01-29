@@ -33,6 +33,7 @@ class ProfessionalListActivity : RoomActivity() {
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
 
     private lateinit var api: RoomApi
+    private lateinit var category: CategoriesEnum
 
     enum class CategoriesEnum(value: String) {
         HEALTH("Health"),
@@ -48,7 +49,7 @@ class ProfessionalListActivity : RoomActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         intent.getSerializableExtra(EXTRA_CATEGORY)?.apply {
-            val category = this as CategoriesEnum
+            category = this as CategoriesEnum
             supportActionBar?.title = category.name
         }?: throw RuntimeException("Unknown extra")
 
@@ -56,7 +57,7 @@ class ProfessionalListActivity : RoomActivity() {
     }
 
     private fun init() {
-        /*values.add(ServiceContact(1, "Ristorante Alfredo",
+        values.add(ServiceContact(1, "Ristorante Alfredo",
             "Very tasty italian restaurant",
             "Osolemio 3, 12345 Berlin",
             "+4915251741573",
@@ -72,14 +73,21 @@ class ProfessionalListActivity : RoomActivity() {
             "Amerikanerstraße 2, 12345 Berlin",
             "+4915251741573",
             "1.3 km")
-        )*/
+        )
 
         initService()
 
-        api.getFood()
+        val observable = when(category) {
+            CategoriesEnum.FOOD -> api.getFood()
+            CategoriesEnum.HEALTH -> api.getHealth()
+            CategoriesEnum.CRAFT -> api.getArtisans()
+        }
+
+        observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnNext {
+                values.clear()
                 values.addAll(it)
                 recyclerView.adapter?.notifyDataSetChanged()
             }

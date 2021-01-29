@@ -1,7 +1,8 @@
-package de.emil.rooms.private
+package de.emil.rooms.contacts
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.View
 import bindView
 import de.emil.rooms.R

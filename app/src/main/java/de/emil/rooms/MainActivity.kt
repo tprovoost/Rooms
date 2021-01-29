@@ -8,9 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import bindView
 import de.emil.rooms.interests.ChooseInterestActivity
-import de.emil.rooms.private.ContactsActivity
+import de.emil.rooms.contacts.ContactsActivity
 import de.emil.rooms.professionals.ProfessionalActivity
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : RoomActivity() {
 

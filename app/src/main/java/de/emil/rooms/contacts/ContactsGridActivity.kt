@@ -1,17 +1,22 @@
-package de.emil.rooms.private
+package de.emil.rooms.contacts
 
+import android.app.ActivityOptions
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bindView
+import com.google.android.material.transition.platform.MaterialContainerTransform
+import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 
@@ -22,6 +27,16 @@ class ContactsGridActivity : RoomActivity() {
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
+
+        // Attach a callback used to capture the shared elements from this Activity to be used
+        // by the container transform transition
+        setExitSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+        setEnterSharedElementCallback(MaterialContainerTransformSharedElementCallback())
+
+        // Keep system bars (status bar, navigation bar) persistent throughout the transition.
+        window.sharedElementsUseOverlay = true
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_family)
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -60,7 +75,15 @@ class ContactsGridActivity : RoomActivity() {
             holder.image.setImageResource(contact.pictureID)
 
             holder.itemView.setOnClickListener {
-                dialPhoneNumber(contact.number)
+                // dialPhoneNumber(contact.number)
+                val intent = Intent(this@ContactsGridActivity, ContactDetailsActivity::class.java)
+                val options = ActivityOptions.makeSceneTransitionAnimation(
+                    this@ContactsGridActivity,
+                    holder.mainLayout,
+                    "shared_element_image" // The transition name to be matched in Activity B.
+                )
+
+                startActivity(intent, options.toBundle())
             }
         }
 
@@ -71,17 +94,7 @@ class ContactsGridActivity : RoomActivity() {
         internal inner class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             var name: TextView = itemView.findViewById(R.id.cardContactTV)
             var image: ImageView = itemView.findViewById(R.id.cardContactIV)
-        }
-    }
-
-    fun dialPhoneNumber(phoneNumber: String) {
-        val intent = Intent(Intent.ACTION_DIAL).apply {
-            data = Uri.parse("tel:$phoneNumber")
-        }
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        } else {
-            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
+            var mainLayout: CardView = itemView.findViewById(R.id.mainLayout)
         }
     }
 }

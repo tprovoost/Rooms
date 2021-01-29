@@ -3,8 +3,8 @@
     package="de.emil.rooms">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -13,18 +13,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".interests.ChooseInterestActivity"
+        <activity
+            android:name=".contacts.ContactDetailsActivity"
+            android:label="Contact details" />
+        <activity
+            android:name=".interests.ChooseInterestActivity"
             android:label="Pick your interests" />
         <activity
-            android:name=".private.ContactsActivity"
+            android:name=".contacts.ContactsActivity"
             android:label="@string/title_activity_private" />
         <activity
             android:name=".professionals.ProfessionalActivity"
             android:label="Professionals" />
+        <activity android:name=".professionals.ProfessionalListActivity" />
         <activity
-            android:name=".professionals.ProfessionalListActivity" />
-        <activity
-            android:name=".private.ContactsGridActivity"
+            android:name=".contacts.ContactsGridActivity"
             android:label="@string/title_activity_private" />
         <activity
             android:name=".MainActivity"

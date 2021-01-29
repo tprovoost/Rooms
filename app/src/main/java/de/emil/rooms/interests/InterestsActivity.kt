@@ -1,5 +1,6 @@
-package de.emil.rooms.professionals
+package de.emil.rooms.interests
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import bindView
@@ -7,7 +8,7 @@ import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 import de.emil.rooms.professionals.ProfessionalListActivity.CategoriesEnum
 
-class ProfessionalActivity: RoomActivity() {
+class InterestsActivity: RoomActivity() {
 
     private val cardHealth: View by bindView(R.id.cardHealth)
     private val cardCraft: View by bindView(R.id.cardCraft)
@@ -20,20 +21,17 @@ class ProfessionalActivity: RoomActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         cardHealth.setOnClickListener {
-            val intent = ProfessionalListActivity.newIntent(this, CategoriesEnum.HEALTH)
-            startActivity(intent)
+            startActivity(Intent(this, InterestsGridActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
 
         cardCraft.setOnClickListener {
-            val intent = ProfessionalListActivity.newIntent(this, CategoriesEnum.CRAFT)
-            startActivity(intent)
+            startActivity(Intent(this, InterestsGridActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
 
         cardFood.setOnClickListener {
-            val intent = ProfessionalListActivity.newIntent(this, CategoriesEnum.FOOD)
-            startActivity(intent)
+            startActivity(Intent(this, InterestsGridActivity::class.java))
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
     }

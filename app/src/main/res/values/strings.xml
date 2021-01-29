@@ -101,4 +101,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="title_testcontacts_list">Items</string>
+    <string name="title_testcontacts_detail">TestContacts Detail</string>
 </resources>
