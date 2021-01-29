@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:transitionName="shared_transition_card"
     android:layout_marginEnd="@dimen/card_margin"
     android:layout_marginTop="@dimen/card_margin"
     android:clickable="true"
@@ -19,6 +20,7 @@
 
         <ImageView
             android:id="@+id/cardContactIV"
+            android:transitionName="shared_transition_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:src="@drawable/thomas"

@@ -20,6 +20,9 @@
             android:name=".interests.ChooseInterestActivity"
             android:label="Pick your interests" />
         <activity
+            android:name=".interests.InterestsGridActivity"
+            android:label="Interests" />
+        <activity
             android:name=".contacts.ContactsActivity"
             android:label="@string/title_activity_private" />
         <activity

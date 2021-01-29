@@ -1,5 +1,6 @@
 package de.emil.rooms.contacts
 
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -8,20 +9,51 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageButton
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import bindView
 import com.google.android.material.transition.platform.MaterialContainerTransform
 import com.google.android.material.transition.platform.MaterialContainerTransformSharedElementCallback
+import de.emil.rooms.Data
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
 
 class ContactDetailsActivity : AppCompatActivity() {
 
-    private val mainLayout: ViewGroup by bindView(R.id.mainLayout)
     private val callBtn: ImageButton by bindView(R.id.callBtn)
+    private val messageBtn: ImageButton by bindView(R.id.messageBtn)
+    private val nameTV: TextView by bindView(R.id.cardContactTV)
+    private val contactIV: ImageView by bindView(R.id.cardContactIV)
+    private val background: View by bindView(R.id.container)
+
+    private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setupTransition()
+
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_contact_details)
+        setSupportActionBar(findViewById(R.id.toolbar))
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        position = intent.getIntExtra(EXTRA_POSITION, 0)
+
+        initViews()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                onBackPressed()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun setupTransition() {
         window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
         // Set the transition name, which matches Activity A’s start view transition name, on
@@ -42,33 +74,28 @@ class ContactDetailsActivity : AppCompatActivity() {
             addTarget(android.R.id.content)
             duration = 250L
         }
-
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contact_details)
-        setSupportActionBar(findViewById(R.id.toolbar))
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
-        initViews()
     }
 
     private fun initViews() {
+        val contact = Data.contactValues[position]
+
+        nameTV.text = getString(R.string.full_name, contact.firstName, contact.lastName)
+        contactIV.setImageResource(contact.pictureID)
+
         callBtn.setOnClickListener {
             dialPhoneNumber("+4915251741573")
         }
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
+        messageBtn.setOnClickListener {
+            textPhoneNumber("+4915251741573")
+        }
+
+        background.setOnClickListener {
+            onBackPressed()
         }
     }
 
-
-    fun dialPhoneNumber(phoneNumber: String) {
+    private fun dialPhoneNumber(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
             data = Uri.parse("tel:$phoneNumber")
         }
@@ -76,6 +103,28 @@ class ContactDetailsActivity : AppCompatActivity() {
             startActivity(intent)
         } else {
             Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun textPhoneNumber(phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("smsto:$phoneNumber")
+        }
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    companion object {
+        const val EXTRA_POSITION = "ContactDetailsActivity.EXTRA_POSITION"
+
+        fun newIntent(context: Context, position: Int): Intent {
+            val intent = Intent(context, ContactDetailsActivity::class.java)
+            intent.putExtra(EXTRA_POSITION, position)
+
+            return intent
         }
     }
 }

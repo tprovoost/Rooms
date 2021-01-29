@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#89D1A3</color>
-    <color name="colorPrimaryDark">#546A7B</color>
+    <color name="colorPrimary">#89BBD1</color>
+    <color name="colorPrimaryDark">#2792F6</color>
     <color name="colorAccent">#C6C5B9</color>
 
-    <color name="text">#333333</color>
+    <color name="text">#393D3F</color>
     <color name="white">#FFFFFF</color>
     <color name="light_gray">#E6E6E6</color>
+
+    <color name="backgroundGray">#F4F4F4</color>
 
     <color name="privateCard">#982D2D</color>
 
@@ -14,5 +16,5 @@
     <color name="gray_transparent">#11434343</color>
     <color name="blackTransparent60percent">#96000000</color>
 
-    <color name="selectedBlue">#0E60DA</color>
+    <color name="selectedBlue">#2792F6</color>
 </resources>

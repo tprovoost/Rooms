@@ -1,5 +1,6 @@
 package de.emil.rooms.interests
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,15 +10,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bindView
+import de.emil.rooms.Data
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
+import de.emil.rooms.model.Interest
 
 class ChooseInterestActivity : RoomActivity() {
 
-    private var values = ArrayList<Interest>()
+    private var values = Data.interestsValues
     private var selectedValues = ArrayList<Int>()
 
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
+    private val confirmBtn: View by bindView(R.id.confirmBtn)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,19 +33,16 @@ class ChooseInterestActivity : RoomActivity() {
     }
 
     private fun init() {
-        values.add(Interest("Travel", R.drawable.thomas))
-        values.add(Interest("Card games" , R.drawable.darya))
-        values.add(Interest("Video Games" , R.drawable.sanya))
-        values.add(Interest("Football", R.drawable.henrik))
-        values.add(Interest("Rugby", R.drawable.henrik))
 
 
         val adapter = InterestAdapter()
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
-    }
 
-    inner class Interest(var name: String, var pictureID: Int)
+        confirmBtn.setOnClickListener {
+            startActivity(Intent(this, InterestsActivity::class.java))
+        }
+    }
 
     internal inner class InterestAdapter : RecyclerView.Adapter<InterestAdapter.InterestViewHolder>() {
         private val inflater: LayoutInflater = layoutInflater
@@ -55,7 +56,7 @@ class ChooseInterestActivity : RoomActivity() {
             val contact = values[position]
 
             holder.name.text = contact.name
-            holder.image.setImageResource(R.drawable.sanya)
+            holder.image.setImageResource(contact.pictureID)
             holder.selectedView.visibility = View.GONE
 
             holder.itemView.setOnClickListener {
