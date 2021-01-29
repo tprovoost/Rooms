@@ -13,7 +13,6 @@ import bindView
 import de.emil.rooms.Data
 import de.emil.rooms.R
 import de.emil.rooms.RoomActivity
-import de.emil.rooms.model.Interest
 
 class ChooseInterestActivity : RoomActivity() {
 
@@ -33,14 +32,13 @@ class ChooseInterestActivity : RoomActivity() {
     }
 
     private fun init() {
-
-
         val adapter = InterestAdapter()
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
 
         confirmBtn.setOnClickListener {
-            startActivity(Intent(this, InterestsActivity::class.java))
+            val intent = InterestsActivity.newIntent(this, selectedValues)
+            startActivity(intent)
         }
     }
 
@@ -48,7 +46,7 @@ class ChooseInterestActivity : RoomActivity() {
         private val inflater: LayoutInflater = layoutInflater
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InterestViewHolder {
-            val view = inflater.inflate(R.layout.li_interest, parent, false)
+            val view = inflater.inflate(R.layout.li_interest_contact, parent, false)
             return InterestViewHolder(view)
         }
 
@@ -56,7 +54,7 @@ class ChooseInterestActivity : RoomActivity() {
             val contact = values[position]
 
             holder.name.text = contact.name
-            holder.image.setImageResource(contact.pictureID)
+            holder.image.setImageResource(contact.resID)
             holder.selectedView.visibility = View.GONE
 
             holder.itemView.setOnClickListener {

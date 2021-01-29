@@ -55,12 +55,27 @@
                 android:src="@drawable/card_health" />
 
             <TextView
+                android:id="@+id/titleDoctors"
                 style="@style/cardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/text_margin"
-                android:text="Health" />
+                android:layout_marginStart="@dimen/text_margin"
+                android:layout_marginBottom="8dp"
+                android:text="Doctors"
+                android:textSize="20sp" />
+
+            <TextView
+                style="@style/cardText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/titleDoctors"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="8dp"
+                android:text="near you"
+                android:textColor="@color/selectedBlue"
+                android:textSize="20sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 
@@ -93,12 +108,26 @@
                 android:src="@drawable/card_craft" />
 
             <TextView
+                android:id="@+id/titleCraft"
                 style="@style/cardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/text_margin"
-                android:text="Craft"
+                android:layout_marginStart="@dimen/text_margin"
+                android:layout_marginBottom="8dp"
+                android:text="Craftsmen"
+                android:textSize="20sp" />
+
+            <TextView
+                style="@style/cardText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/titleCraft"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="8dp"
+                android:text="near you"
+                android:textColor="@color/selectedBlue"
                 android:textSize="20sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -132,13 +161,27 @@
                 android:src="@drawable/card_food" />
 
             <TextView
+                android:id="@+id/titleFood"
                 style="@style/cardText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Food"
-                android:textSize="20sp"
                 android:layout_alignParentBottom="true"
-                android:layout_margin="@dimen/text_margin"/>
+                android:layout_marginStart="@dimen/text_margin"
+                android:layout_marginBottom="8dp"
+                android:text="Restaurants"
+                android:textSize="20sp" />
+
+            <TextView
+                style="@style/cardText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@id/titleFood"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="8dp"
+                android:text="near you"
+                android:textColor="@color/selectedBlue"
+                android:textSize="20sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 

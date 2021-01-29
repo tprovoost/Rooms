@@ -4,11 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mainLayout"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:transitionName="shared_transition_card"
-    android:layout_marginStart="50dp"
-    android:layout_marginEnd="50dp"
+    android:layout_marginEnd="@dimen/card_margin"
     android:layout_marginTop="@dimen/card_margin"
     android:clickable="true"
     android:focusable="true"
@@ -17,46 +16,32 @@
     app:cardPreventCornerOverlap="false">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/cardContactIV"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:layout_marginTop="6dp"
-            android:src="@drawable/interest_sport"
             android:transitionName="shared_transition_image"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/thomas"
+            app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/peopleIntoTv"
-            style="@style/cardText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:text="People into "
-            android:textColor="@color/text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardContactIV" />
 
         <TextView
             android:id="@+id/cardContactTV"
             style="@style/cardText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:textColor="@color/selectedBlue"
+            android:layout_margin="6dp"
+            android:textColor="@color/text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/peopleIntoTv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardContactIV"
-            tools:text="Travel" />
+            tools:text="Thomas" />
 
         <FrameLayout
             android:id="@+id/selectedView"

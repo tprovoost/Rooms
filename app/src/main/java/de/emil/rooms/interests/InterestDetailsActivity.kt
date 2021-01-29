@@ -78,6 +78,8 @@ class InterestDetailsActivity : AppCompatActivity() {
     private fun initViews() {
         val contact = Data.interestsContactValues[position]
 
+        supportActionBar?.title = "Details"
+
         nameTV.text = getString(R.string.full_name, contact.firstName, contact.lastName)
         descriptionTV.text = contact.description
         contactIV.setImageResource(contact.pictureID)

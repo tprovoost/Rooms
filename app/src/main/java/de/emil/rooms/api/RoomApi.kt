@@ -14,10 +14,10 @@ public interface RoomApi {
     @GET("health")
     fun getHealth(): Observable<ArrayList<ServiceContact>>
 
-    @GET("artisans")
-    fun getArtisans(): Observable<ArrayList<ServiceContact>>
+    @GET("craftsmen")
+    fun getCraftsmen(): Observable<ArrayList<ServiceContact>>
 
     companion object {
-        const val API_BASE_URL = "https://6012ddc954044a00172dcd34.mockapi.io/api/v1/"
+        const val API_BASE_URL = "https://601408b9b538980017568a68.mockapi.io/"
     }
 }

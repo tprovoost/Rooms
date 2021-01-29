@@ -35,7 +35,7 @@ class ProfessionalListActivity : RoomActivity() {
     private lateinit var api: RoomApi
     private lateinit var category: CategoriesEnum
 
-    enum class CategoriesEnum(value: String) {
+    enum class CategoriesEnum(var value: String) {
         HEALTH("Health"),
         CRAFT("Craft"),
         FOOD("Food"),
@@ -50,7 +50,7 @@ class ProfessionalListActivity : RoomActivity() {
 
         intent.getSerializableExtra(EXTRA_CATEGORY)?.apply {
             category = this as CategoriesEnum
-            supportActionBar?.title = category.name
+            supportActionBar?.title = category.value
         }?: throw RuntimeException("Unknown extra")
 
         init()
@@ -61,18 +61,18 @@ class ProfessionalListActivity : RoomActivity() {
             "Very tasty italian restaurant",
             "Osolemio 3, 12345 Berlin",
             "+4915251741573",
-            "100 m"))
+            0.2))
         values.add(ServiceContact(2, "Sushi Hero",
             "Best Sushis in Berlin",
             "Superstraße 132, 12345 Berlin",
-            "+4915251741573",
-            "400 m"))
+            "4915251741573",
+        1.3))
         values.add(
             ServiceContact(3, "Extra Burger",
             "Make Burgers Great Again",
             "Amerikanerstraße 2, 12345 Berlin",
-            "+4915251741573",
-            "1.3 km")
+            "4915251741573",
+            0.4)
         )
 
         initService()
@@ -80,7 +80,7 @@ class ProfessionalListActivity : RoomActivity() {
         val observable = when(category) {
             CategoriesEnum.FOOD -> api.getFood()
             CategoriesEnum.HEALTH -> api.getHealth()
-            CategoriesEnum.CRAFT -> api.getArtisans()
+            CategoriesEnum.CRAFT -> api.getCraftsmen()
         }
 
         observable
@@ -131,9 +131,10 @@ class ProfessionalListActivity : RoomActivity() {
         override fun onBindViewHolder(holder: ServiceContactViewHolder, position: Int) {
             val contact = values[position]
 
-            holder.name.text = contact.name
-            holder.distance.text = contact.distance
-            holder.description.text = contact.description
+            holder.tvName.text = contact.name
+            holder.tvDescription.text = contact.description
+            holder.tvDistance.text = "${contact.distance} km"
+            holder.tvAddress.text = contact.address
 
             holder.itemView.setOnClickListener {
                 if (contact.phone.isEmpty()) {
@@ -149,15 +150,16 @@ class ProfessionalListActivity : RoomActivity() {
         }
 
         internal inner class ServiceContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-            var name: TextView = itemView.findViewById(R.id.cardServiceName)
-            var distance: TextView = itemView.findViewById(R.id.cardServiceDistance)
-            var description: TextView = itemView.findViewById(R.id.cardServiceDescription)
+            var tvName: TextView = itemView.findViewById(R.id.cardServiceName)
+            var tvDescription: TextView = itemView.findViewById(R.id.cardServiceDescription)
+            var tvDistance: TextView = itemView.findViewById(R.id.cardServiceDistance)
+            var tvAddress: TextView = itemView.findViewById(R.id.cardServiceAddress)
         }
     }
 
     fun dialPhoneNumber(phoneNumber: String) {
         val intent = Intent(Intent.ACTION_DIAL).apply {
-            data = Uri.parse("tel:$phoneNumber")
+            data = Uri.parse("tel:+$phoneNumber")
         }
         if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)

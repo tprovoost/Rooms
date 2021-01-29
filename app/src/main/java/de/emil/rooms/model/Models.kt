@@ -6,9 +6,9 @@ data class ServiceContact(
     @SerializedName("id") var id: Int,
     @SerializedName("name") var name: String,
     @SerializedName("description") var description: String,
-    @SerializedName("createdAt") var createdAt: String,
+    @SerializedName("address") var address: String,
     @SerializedName("phone") var phone: String,
-    @SerializedName("distance") var distance: String)
+    @SerializedName("distance") var distance: Double)
 
 
 data class Contact(var firstName: String,
@@ -22,4 +22,4 @@ data class InterestContact(var firstName: String,
                            var number: String,
                            var description: String)
 
-data class Interest(var name: String, var pictureID: Int)
+data class Interest(var name: String, var resID: Int)

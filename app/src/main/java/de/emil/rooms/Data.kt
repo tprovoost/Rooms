@@ -16,10 +16,10 @@ object Data {
         contactValues.add(Contact("Tobi", "Sanya", R.drawable.sanya, "+4915251741573"))
         contactValues.add(Contact("Henrik", "Dittmar", R.drawable.henrik, "+4915251741573"))
 
-        interestsContactValues.add(InterestContact("Kevin", "Spacey", R.drawable.thomas, "+4915251741573", "Travel, Food, Cinema"))
-        interestsContactValues.add(InterestContact("Emily" , "Adams", R.drawable.darya, "+4915251741573", "Travel, Cinema, Family, TV"))
-        interestsContactValues.add(InterestContact("Morgan" , "Freeman", R.drawable.sanya, "+4915251741573", "Travel, Food, Wine"))
-        interestsContactValues.add(InterestContact("James", "Bond", R.drawable.henrik, "+4915251741573", "Travel, Murder"))
+        interestsContactValues.add(InterestContact("Kevin", "Spacey", R.drawable.spacey, "+4915251741573", "Travel, Food, Cinema"))
+        interestsContactValues.add(InterestContact("Amy" , "Adams", R.drawable.adams, "+4915251741573", "Travel, Cinema, Family, TV"))
+        interestsContactValues.add(InterestContact("Morgan" , "Freeman", R.drawable.freeman, "+4915251741573", "Travel, Food, Wine"))
+        interestsContactValues.add(InterestContact("James", "Bond", R.drawable.bond, "+4915251741573", "Travel, Murder"))
 
         interestsValues.add(Interest("Sport", R.drawable.interest_sport))
         interestsValues.add(Interest("Music", R.drawable.interest_music))

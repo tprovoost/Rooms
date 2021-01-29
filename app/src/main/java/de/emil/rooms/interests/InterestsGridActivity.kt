@@ -1,8 +1,8 @@
 package de.emil.rooms.interests
 
 import android.app.ActivityOptions
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import bindView
@@ -49,16 +48,20 @@ class InterestsGridActivity : RoomActivity() {
     }
 
     private fun init() {
+        values = Data.interestsContactValues
+
         val adapter = ContactAdapter()
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
+
+        supportActionBar?.title = intent.getStringExtra(EXTRA_CATEGORY) ?: "Interest"
     }
 
     internal inner class ContactAdapter : RecyclerView.Adapter<ContactAdapter.ContactViewHolder>() {
         private val inflater: LayoutInflater = layoutInflater
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactViewHolder {
-            val view = inflater.inflate(R.layout.li_interest, parent, false)
+            val view = inflater.inflate(R.layout.li_contact, parent, false)
             return ContactViewHolder(view)
         }
 
@@ -91,14 +94,15 @@ class InterestsGridActivity : RoomActivity() {
         }
     }
 
-    fun dialPhoneNumber(phoneNumber: String) {
-        val intent = Intent(Intent.ACTION_DIAL).apply {
-            data = Uri.parse("tel:$phoneNumber")
-        }
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
-        } else {
-            Toast.makeText(this, "No phone app found.", Toast.LENGTH_SHORT).show()
+    companion object {
+        const val EXTRA_CATEGORY = "InterestsGridActivity.EXTRA_CATEGORY"
+
+        fun newIntent(context: Context, categoryName: String): Intent {
+            val intent = Intent(context, InterestsGridActivity::class.java)
+
+            intent.putExtra(EXTRA_CATEGORY, categoryName)
+
+            return intent
         }
     }
 }
