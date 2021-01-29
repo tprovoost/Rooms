@@ -30,7 +30,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="@dimen/card_margin"
         app:layout_constraintTop_toBottomOf="@id/appBarLayout"
         tools:listitem="@layout/li_contact"/>
 

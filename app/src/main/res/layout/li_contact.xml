@@ -24,6 +24,7 @@
             android:transitionName="shared_transition_image"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/thomas"
             app:layout_constraintDimensionRatio="w,1:1"
             app:layout_constraintLeft_toLeftOf="parent"

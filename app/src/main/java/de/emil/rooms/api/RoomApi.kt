@@ -1,17 +1,15 @@
 package de.emil.rooms.api
 
-import de.emil.rooms.interests.ChooseInterestActivity
 import de.emil.rooms.model.ServiceContact
-import de.emil.rooms.professionals.ProfessionalListActivity
 import io.reactivex.Observable
 import retrofit2.http.GET
 
 public interface RoomApi {
 
-    @GET("food")
+    @GET("restaurants")
     fun getFood(): Observable<ArrayList<ServiceContact>>
 
-    @GET("health")
+    @GET("health-officials")
     fun getHealth(): Observable<ArrayList<ServiceContact>>
 
     @GET("craftsmen")

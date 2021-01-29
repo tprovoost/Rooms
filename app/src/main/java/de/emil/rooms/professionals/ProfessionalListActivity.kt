@@ -31,6 +31,7 @@ class ProfessionalListActivity : RoomActivity() {
 
     private var values = ArrayList<ServiceContact>()
     private val recyclerView: RecyclerView by bindView(R.id.recyclerView)
+    private val loading: View by bindView(R.id.loading)
 
     private lateinit var api: RoomApi
     private lateinit var category: CategoriesEnum
@@ -57,24 +58,6 @@ class ProfessionalListActivity : RoomActivity() {
     }
 
     private fun init() {
-        values.add(ServiceContact(1, "Ristorante Alfredo",
-            "Very tasty italian restaurant",
-            "Osolemio 3, 12345 Berlin",
-            "+4915251741573",
-            0.2))
-        values.add(ServiceContact(2, "Sushi Hero",
-            "Best Sushis in Berlin",
-            "Superstraße 132, 12345 Berlin",
-            "4915251741573",
-        1.3))
-        values.add(
-            ServiceContact(3, "Extra Burger",
-            "Make Burgers Great Again",
-            "Amerikanerstraße 2, 12345 Berlin",
-            "4915251741573",
-            0.4)
-        )
-
         initService()
 
         val observable = when(category) {
@@ -83,6 +66,8 @@ class ProfessionalListActivity : RoomActivity() {
             CategoriesEnum.CRAFT -> api.getCraftsmen()
         }
 
+        loading.visibility = View.VISIBLE
+
         observable
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -90,6 +75,7 @@ class ProfessionalListActivity : RoomActivity() {
                 values.clear()
                 values.addAll(it)
                 recyclerView.adapter?.notifyDataSetChanged()
+                loading.visibility = View.GONE
             }
             .doOnError {
                 Log.e("ProfessionalList", "Failure on call", it)
@@ -132,9 +118,17 @@ class ProfessionalListActivity : RoomActivity() {
             val contact = values[position]
 
             holder.tvName.text = contact.name
-            holder.tvDescription.text = contact.description
+
             holder.tvDistance.text = "${contact.distance} km"
             holder.tvAddress.text = contact.address
+
+            if (contact.description.isNullOrEmpty()) {
+                holder.separator.visibility = View.GONE
+                holder.tvDescription.visibility = View.INVISIBLE
+            } else {
+                holder.tvDescription.visibility = View.VISIBLE
+                holder.tvDescription.text = contact.description
+            }
 
             holder.itemView.setOnClickListener {
                 if (contact.phone.isEmpty()) {
@@ -154,6 +148,7 @@ class ProfessionalListActivity : RoomActivity() {
             var tvDescription: TextView = itemView.findViewById(R.id.cardServiceDescription)
             var tvDistance: TextView = itemView.findViewById(R.id.cardServiceDistance)
             var tvAddress: TextView = itemView.findViewById(R.id.cardServiceAddress)
+            var separator: View = itemView.findViewById(R.id.separator)
         }
     }
 
