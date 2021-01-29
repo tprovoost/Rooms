@@ -28,7 +28,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardHealth"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_margin="@dimen/card_margin"
         android:clickable="true"
         android:focusable="true"
@@ -36,13 +36,23 @@
         app:cardElevation="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:layout_constraintTop_toBottomOf="@+id/cardCraft"
         tools:layout_editor_absoluteX="32dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="12dp"
+                android:scaleType="center"
+                android:src="@drawable/card_health" />
 
             <TextView
                 style="@style/cardText"
@@ -57,7 +67,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardCraft"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:layout_margin="@dimen/card_margin"
         android:clickable="true"
         android:focusable="true"
@@ -65,12 +75,22 @@
         app:cardElevation="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardHealth">
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="12dp"
+                android:scaleType="center"
+                android:src="@drawable/card_craft" />
 
             <TextView
                 style="@style/cardText"
@@ -79,7 +99,6 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/text_margin"
                 android:text="Craft"
-                android:textColor="@color/white"
                 android:textSize="20sp" />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
@@ -87,7 +106,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardFood"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="200dp"
         android:clickable="true"
         android:focusable="true"
         android:layout_margin="@dimen/card_margin"
@@ -95,12 +114,22 @@
         app:cardElevation="3dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardCraft">
+        app:layout_constraintTop_toBottomOf="@+id/cardHealth">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="12dp"
+                android:scaleType="center"
+                android:src="@drawable/card_food" />
 
             <TextView
                 style="@style/cardText"
@@ -108,7 +137,6 @@
                 android:layout_height="wrap_content"
                 android:text="Food"
                 android:textSize="20sp"
-                android:textColor="@color/white"
                 android:layout_alignParentBottom="true"
                 android:layout_margin="@dimen/text_margin"/>
         </RelativeLayout>

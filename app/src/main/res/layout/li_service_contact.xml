@@ -20,13 +20,24 @@
 
         <ImageView
             android:id="@+id/cardContactIV"
-            android:layout_width="wrap_content"
-            android:layout_height="120dp"
-            android:src="@drawable/thomas"
-            android:scaleType="center"
+            android:layout_width="500dp"
+            android:layout_height="150dp"
+            android:background="@drawable/image_restaurant"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/image_4"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardServiceDistance"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardContactIV" />
 
         <TextView
             android:id="@+id/cardServiceName"
@@ -40,7 +51,7 @@
             app:layout_constraintEnd_toStartOf="@+id/cardServiceDistance"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardContactIV"
+            app:layout_constraintTop_toBottomOf="@id/rating"
             tools:text="Ristorante Alfredo" />
 
         <TextView

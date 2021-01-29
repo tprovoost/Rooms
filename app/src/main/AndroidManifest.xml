@@ -23,6 +23,9 @@
             android:name=".interests.InterestsGridActivity"
             android:label="Interests" />
         <activity
+            android:name=".interests.InterestsActivity"
+            android:label="Interests" />
+        <activity
             android:name=".contacts.ContactsActivity"
             android:label="@string/title_activity_private" />
         <activity
@@ -35,6 +38,9 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
+        </activity>
+        <activity android:name=".landing.LandingActivity"
+            android:label="Rooms">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

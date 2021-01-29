@@ -8,6 +8,15 @@
     android:orientation="vertical"
     android:background="@color/backgroundGray">
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
     <TextView
         android:id="@+id/subtitle"
         android:layout_width="wrap_content"
@@ -17,12 +26,12 @@
         android:layout_marginBottom="6dp"
         android:fontFamily="@font/roboto_light"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toTopOf="@id/button"
+        app:layout_constraintBottom_toTopOf="@id/startBtn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
     <TextView
-        android:id="@+id/button"
+        android:id="@+id/startBtn"
         style="@style/LandingButton"
         android:layout_width="260dp"
         android:layout_height="60dp"
