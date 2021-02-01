@@ -41,6 +41,7 @@ class ChooseInterestActivity : RoomActivity() {
             startActivity(intent)
             overridePendingTransition(R.anim.right_in, R.anim.left_out)
         }
+        confirmBtn.isEnabled = false
     }
 
     internal inner class InterestAdapter : RecyclerView.Adapter<InterestAdapter.InterestViewHolder>() {
